@@ -1,12 +1,14 @@
 class Library:
     def __init__(self,nameoflib,booklist):
-        self.nameoflib=nameoflib
-        self.booklist=booklist
-        self.dict={}
+        '''initiating constructor'''
+        self.nameoflib=nameoflib # name of library
+        self.booklist=booklist # book list
+        self.dict={} # dictionary which will save records
         print(f'Welcome to the {self.nameoflib}!!!')
 
     @staticmethod
     def welcomemsg():
+        '''welcome message and command option for user'''
         print('''
 Please choose an option:
 1. List all the books
@@ -17,12 +19,16 @@ Please choose an option:
 
 
     def displayallbooks(self):
+        '''display available books'''
         print(f'Availaible Books in the {self.nameoflib} are :')
+        # print books from book list
         for books in self.booklist:
             print('*'+books)
 
 
     def borrowbook(self,bookname,user):
+        '''allow user to borrow books'''
+        # check if book is present in library or not or already issued to someone else
         if bookname in self.booklist:
             self.booklist.remove(bookname)
             self.dict.update({str(bookname):str(user)})
@@ -34,6 +40,8 @@ Please choose an option:
 
 
     def returnbook(self,bookname2,user2):
+        '''allow user to return and books'''
+        # check if enterd book is in the dictionary records or not
         if bookname2 in self.dict.keys():
            self.booklist.append(bookname2)
            self.dict.pop(bookname2)
@@ -47,11 +55,13 @@ Please choose an option:
 
 class Student:
     def requestbook(self):
+        '''take user's request'''
         bookname=input('enter book name you want to borrow :')
         user=input('enter your name :')
         return bookname,user
 
     def reutrnbook(self):
+        '''take info to return book'''
         bookname2=input("type name of book you want to return/add :")
         user2=input("type your name :")
         return bookname2,user2
